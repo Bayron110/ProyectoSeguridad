@@ -1,29 +1,3 @@
-<nav class="navbar">
-  <div class="navbar-left">
-    <img
-      src="https://www.datos101.com/wp-content/uploads/2023/12/seguridad-informatica.png"
-      class="navbar-logo"
-      alt="Logo"
-    />
-
-    <span class="navbar-title">Proyecto Seguridad</span>
-  </div>
-
-  <div class="navbar-links">
-    <a routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-
-    <a routerLink="/cifrado-simetrico" routerLinkActive="active-link">Cifrado Simétrico</a>
-
-    <a routerLink="/cifrado-asimetrico" routerLinkActive="active-link">Cifrado Asimétrico</a>
-  </div>
-</nav>
-
-<main class="main-content">
-  <router-outlet></router-outlet>
-</main>
-
-<footer class="footer">
-  <div class="footer-content">
-    <p>© 2025 Proyecto Seguridad — Trabajo académico</p>
-  </div>
-</footer>
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

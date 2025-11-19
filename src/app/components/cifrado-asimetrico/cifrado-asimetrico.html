@@ -1,2 +1,38 @@
-<h2>Cifrado Asimétrico</h2>
-<p>zzz</p>
+<div class="container">
+  <h2>Cifrado Híbrido RSA + AES</h2>
+
+  <label>Seleccione un archivo:</label>
+  <input type="file" (change)="onFileSelected($event)" />
+
+  <br /><br />
+
+  <button (click)="cifrarArchivo()">Cifrar archivo</button>
+  <button (click)="descifrarArchivo()">Descifrar archivo</button>
+
+  <p>{{ mensaje }}</p>
+
+  <hr />
+
+  <!-- 🔑 Clave Pública RSA (solo se muestra si existe) -->
+  @if (clavePublicaPEM) {
+    <h3>🔑 Clave Pública RSA</h3>
+    <textarea rows="8" class="clave" readonly>{{ clavePublicaPEM }}</textarea>
+  }
+
+  <!-- 🔐 Clave Privada RSA (solo se muestra si existe) -->
+  @if (clavePrivadaPEM) {
+    <h3>🔐 Clave Privada RSA</h3>
+    <textarea rows="8" class="clave" readonly>{{ clavePrivadaPEM }}</textarea>
+  }
+
+  <!-- SI NO EXISTEN CLAVES, NO MOSTRAR NADA (quedan ocultos) -->
+
+  <br /><br />
+  
+  <label for="clavePrivadaInput">📤 Cargar clave privada (.pem):</label>
+  <input type="file" id="clavePrivadaInput" (change)="cargarClavePrivada($event)" />
+
+  <br /><br />
+
+  <button (click)="descargarClavePrivada()">📥 Descargar clave privada (.pem)</button>
+</div>

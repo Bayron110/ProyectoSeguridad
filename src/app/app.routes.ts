@@ -4,13 +4,13 @@ import { CifradoSimetricoComponent } from './components/cifrado-simetrico/cifrad
 import { CifradoAsimetricoComponent } from './components/cifrado-asimetrico/cifrado-asimetrico';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: 'Home', component: HomeComponent },
 
     { path: 'cifrado-simetrico', component: CifradoSimetricoComponent },
 
     { path: 'cifrado-asimetrico', component: CifradoAsimetricoComponent },
 
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'Home', pathMatch:"full" }
 ];
 
 
