@@ -25,9 +25,6 @@ export class CifradoAsimetricoComponent {
     this.generarClavesRSA();
   }
 
-  // ---------------------------------------------------------
-  // 🔑 GENERAR CLAVES PGP COMPATIBLES CON KLEOPATRA
-  // ---------------------------------------------------------
   async generarClavesRSA() {
     const { privateKey, publicKey } = await openpgp.generateKey({
       type: 'rsa',
@@ -41,9 +38,7 @@ export class CifradoAsimetricoComponent {
     this.mensaje = "🔐 Claves PGP generadas correctamente (compatibles con Kleopatra).";
   }
 
-  // ---------------------------------------------------------
-  // SUBIR ARCHIVO 
-  // ---------------------------------------------------------
+
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
 
@@ -56,9 +51,7 @@ export class CifradoAsimetricoComponent {
     }
   }
 
-  // ---------------------------------------------------------
-  // 🔒 CIFRAR ARCHIVO (OpenPGP compatible con Kleopatra)
-  // ---------------------------------------------------------
+
   async cifrarArchivo() {
     try {
       if (!this.archivoSeleccionado) {
@@ -91,9 +84,6 @@ export class CifradoAsimetricoComponent {
     }
   }
 
-  // ---------------------------------------------------------
-  // 🔓 DESCIFRAR ARCHIVO (OpenPGP compatible con Kleopatra)
-  // ---------------------------------------------------------
   async descifrarArchivo() {
     try {
       if (!this.archivoSeleccionado) {
@@ -128,9 +118,6 @@ export class CifradoAsimetricoComponent {
     }
   }
 
-  // ---------------------------------------------------------
-  // 🔒 CIFRAR TEXTO (OpenPGP)
-  // ---------------------------------------------------------
   async cifrarTexto() {
     try {
       if (!this.textoClaro.trim()) {
@@ -153,9 +140,6 @@ export class CifradoAsimetricoComponent {
     }
   }
 
-  // ---------------------------------------------------------
-  // 🔓 DESCIFRAR TEXTO (OpenPGP)
-  // ---------------------------------------------------------
   async descifrarTexto() {
     try {
       const privateKey = await openpgp.readPrivateKey({ armoredKey: this.clavePrivadaPEM });
@@ -175,9 +159,7 @@ export class CifradoAsimetricoComponent {
     }
   }
 
-  // ---------------------------------------------------------
-  // DESCARGAR / SUBIR CLAVE PRIVADA
-  // ---------------------------------------------------------
+
   descargarClavePrivada() {
     const blob = new Blob([this.clavePrivadaPEM], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
@@ -200,9 +182,6 @@ export class CifradoAsimetricoComponent {
     }
   }
 
-  // ---------------------------------------------------------
-  // DESCARGAR TEXTO CIFRADO
-  // ---------------------------------------------------------
   descargarTextoCifrado() {
     const blob = new Blob([this.textoCifrado], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
