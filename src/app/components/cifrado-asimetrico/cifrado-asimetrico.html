@@ -1,11 +1,10 @@
 <div class="container">
-  <h2>Cifrado Híbrido RSA + AES</h2>
+  <h2>Cifrado RSA + AES</h2>
 
   <label>Seleccione un archivo:</label>
   <input type="file" (change)="onFileSelected($event)" />
 
   <br /><br />
-
   <button (click)="cifrarArchivo()">Cifrar archivo</button>
   <button (click)="descifrarArchivo()">Descifrar archivo</button>
 
@@ -13,26 +12,42 @@
 
   <hr />
 
-  <!-- 🔑 Clave Pública RSA (solo se muestra si existe) -->
+  <h3>📝 Ingresar texto para cifrado</h3>
+  <textarea [(ngModel)]="textoClaro" rows="4" placeholder="Escribe el texto aquí..."></textarea>
+  <br /><br />
+  <button (click)="cifrarTexto()">🔐 Cifrar texto</button>
+  <button (click)="descifrarTexto()">🔓 Descifrar texto</button>
+
+  @if (textoCifrado) {
+    <h4>Texto cifrado (base64):</h4>
+    <textarea rows="4" readonly>{{ textoCifrado }}</textarea>
+  }
+  <button (click)="descargarTextoCifrado()">📥 Descargar texto cifrado (.txt)</button>
+
+  @if (textoDescifrado) {
+    <h4>Texto descifrado:</h4>
+    <textarea rows="4" readonly>{{ textoDescifrado }}</textarea>
+  }
+  <br /><br />
+<label for="textoCifradoInput">📤 Cargar texto cifrado (.txt):</label>
+<input type="file" id="textoCifradoInput" (change)="cargarTextoCifrado($event)" />
+
+  <hr />
+
   @if (clavePublicaPEM) {
     <h3>🔑 Clave Pública RSA</h3>
     <textarea rows="8" class="clave" readonly>{{ clavePublicaPEM }}</textarea>
   }
 
-  <!-- 🔐 Clave Privada RSA (solo se muestra si existe) -->
   @if (clavePrivadaPEM) {
     <h3>🔐 Clave Privada RSA</h3>
     <textarea rows="8" class="clave" readonly>{{ clavePrivadaPEM }}</textarea>
   }
 
-  <!-- SI NO EXISTEN CLAVES, NO MOSTRAR NADA (quedan ocultos) -->
-
   <br /><br />
-  
   <label for="clavePrivadaInput">📤 Cargar clave privada (.pem):</label>
   <input type="file" id="clavePrivadaInput" (change)="cargarClavePrivada($event)" />
 
   <br /><br />
-
   <button (click)="descargarClavePrivada()">📥 Descargar clave privada (.pem)</button>
 </div>
