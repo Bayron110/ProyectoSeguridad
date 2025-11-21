@@ -11,6 +11,7 @@
   <p>{{ mensaje }}</p>
 
   <hr />
+  
 
   <h3>📝 Ingresar texto para cifrado</h3>
   <textarea [(ngModel)]="textoClaro" rows="4" placeholder="Escribe el texto aquí..."></textarea>
@@ -33,21 +34,20 @@
 <input type="file" id="textoCifradoInput" (change)="cargarTextoCifrado($event)" />
 
   <hr />
+  <label for="clavePrivadaInput">📤 Cargar clave privada (.pem):</label>
+  <input type="file" id="clavePrivadaInput" (change)="cargarClavePrivada($event)" />
+
 
   @if (clavePublicaPEM) {
     <h3>🔑 Clave Pública RSA</h3>
     <textarea rows="8" class="clave" readonly>{{ clavePublicaPEM }}</textarea>
   }
+    <button (click)="descargarClavePrivada()">📥 Descargar clave privada (.pem)</button>
 
   @if (clavePrivadaPEM) {
     <h3>🔐 Clave Privada RSA</h3>
     <textarea rows="8" class="clave" readonly>{{ clavePrivadaPEM }}</textarea>
   }
-
-  <br /><br />
-  <label for="clavePrivadaInput">📤 Cargar clave privada (.pem):</label>
-  <input type="file" id="clavePrivadaInput" (change)="cargarClavePrivada($event)" />
-
-  <br /><br />
-  <button (click)="descargarClavePrivada()">📥 Descargar clave privada (.pem)</button>
+   <button (click)="descargarClavePrivada()">📥 Descargar clave privada (.pem)</button>
+ 
 </div>

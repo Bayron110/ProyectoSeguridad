@@ -35,7 +35,7 @@ export class CifradoAsimetricoComponent {
     this.clavePublicaPEM = publicKey;
     this.clavePrivadaPEM = privateKey;
 
-    this.mensaje = "🔐 Claves PGP generadas correctamente (compatibles con Kleopatra).";
+    this.mensaje = "🔐 Claves PGP generadas correctamente";
   }
 
 
@@ -162,6 +162,15 @@ export class CifradoAsimetricoComponent {
 
   descargarClavePrivada() {
     const blob = new Blob([this.clavePrivadaPEM], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = "clave_privada.asc";
+    link.click();
+  }
+  descargarClavePublica() {
+    const blob = new Blob([this.clavePublicaPEM], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
 
     const link = document.createElement('a');
